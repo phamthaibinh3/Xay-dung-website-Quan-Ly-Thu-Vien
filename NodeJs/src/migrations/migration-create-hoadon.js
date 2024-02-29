@@ -1,32 +1,24 @@
 'use strict';
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('Sach', {
+        await queryInterface.createTable('HoaDon', {
 
-            maSach: {
+            maHoaDon: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            tieuDe: {
-                type: Sequelize.STRING
+            ngayMua: {
+                type: Sequelize.DATE
             },
-            maNXB: {
+            maNguoiDung: {
                 type: Sequelize.INTEGER
             },
-            namXuatBan: {
-                type: Sequelize.STRING
-            },
-            maDanhMuc: {
+            gia: {
                 type: Sequelize.INTEGER
             },
-            soLuong: {
-                type: Sequelize.INTEGER
-            },
-            maHoaDon: {
-                type: Sequelize.INTEGER
-            },
+            
 
             createdAt: {
                 allowNull: false,
@@ -39,6 +31,6 @@ module.exports = {
         });
     },
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('Sach');
+        await queryInterface.dropTable('HoaDon');
     }
 };
