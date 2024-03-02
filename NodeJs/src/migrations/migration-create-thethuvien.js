@@ -3,7 +3,7 @@ module.exports = {
     up: async (queryInterface, Sequelize) => {
         await queryInterface.createTable('TheThuVien', {
 
-            maThe: {
+            id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
