@@ -50,6 +50,32 @@ let checkTaiKhoan = (userTaiKhoan) => {
     })
 }
 
+let getAllUser = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = '';
+            if (userId === 'ALL') {
+                user = await db.User.findAll({
+
+                })
+
+            }
+            if (userId && userId !== 'ALL') {
+                user = await db.User.findOne({
+                    attributes: {
+                        exclude: ['matKhau']
+                    },
+                    where: { id: userId }
+                })
+            }
+            resolve(user);
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     handleUserLogin: handleUserLogin,
+    getAllUser: getAllUser,
 }

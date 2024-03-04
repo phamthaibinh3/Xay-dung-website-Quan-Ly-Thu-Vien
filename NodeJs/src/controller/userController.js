@@ -9,7 +9,6 @@ let handleLogin = async (req, res) => {
             message: 'Bạn chưa nhập tài khoản hoặc mật khẩu',
         })
     }
-
     let userData = await userService.handleUserLogin(taiKhoan, matKhau);
 
     return res.status(200).json({
@@ -17,9 +16,25 @@ let handleLogin = async (req, res) => {
         message: userData.message,
         user: userData.user ? userData.user : {}
     })
-
 }
-
+let handleGetAllUser = async (req, res) => {
+    let id = req.query.id;
+    if (!id) {
+        return res.status(500).json({
+            errCode: 1,
+            message: 'Ban chua co id',
+            users: []
+        })
+    }
+    let users = await userService.getAllUser(id);
+    // console.log(users);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'oke',
+        users
+    })
+}
 module.exports = {
     handleLogin: handleLogin,
+    handleGetAllUser: handleGetAllUser,
 }
