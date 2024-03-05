@@ -34,7 +34,35 @@ let handleGetAllUser = async (req, res) => {
         users
     })
 }
+
+let handleCreateUser = async (req, res) => {
+    let message = await userService.createUser(req.body);
+    // console.log(message);
+    return res.status(200).json(message)
+}
+
+let handleDeleteUser = async (req, res) => {
+    let id = req.body.id;
+    if (!id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "chưa có id"
+        })
+    }
+    let message = await userService.deleteUser(req.body.id);
+    return res.status(200).json(message)
+}
+
+let handleUpdateUser = async (req,res) => {
+    let data = req.body;
+    let message = await userService.updateUser(data);
+    return res.status(200).json(message)
+}
+
 module.exports = {
     handleLogin: handleLogin,
     handleGetAllUser: handleGetAllUser,
+    handleCreateUser: handleCreateUser,
+    handleDeleteUser: handleDeleteUser,
+    handleUpdateUser: handleUpdateUser,
 }
